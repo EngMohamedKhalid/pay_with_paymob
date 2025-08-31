@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pay_with_paymob/pay_with_paymob.dart';
 import 'package:pay_with_paymob/src/services/dio_helper.dart';
 import 'package:pay_with_paymob/src/views/visa_view.dart';
-
+import 'dart:developer';
 import 'mobile_wallet_view.dart';
 
 class PaymentView extends StatefulWidget {
@@ -270,7 +270,7 @@ class PaymentViewState extends State<PaymentView> {
           "api_key": paymentData.apiKey,
         },
       );
-      print("getAuthToken $response");
+      log("getAuthToken $response");
       paymentFirstToken = response.data['token'];
     } catch (error) {
       widget.onPaymentError({
@@ -292,7 +292,7 @@ class PaymentViewState extends State<PaymentView> {
           "items": [],
         },
       );
-      print("getOrderRegisrationId $response");
+      log("getOrderRegisrationId $response");
       paymentOrderId = response.data['id'].toString();
       await getPaymentRequest();
     } catch (error) {
@@ -336,7 +336,7 @@ class PaymentViewState extends State<PaymentView> {
         url: '/acceptance/payment_keys',
         data: requestData,
       );
-      print("getPaymentRequest $response");
+      log("getPaymentRequest $response");
       finalToken = response.data['token'];
     } catch (error) {
       widget.onPaymentError({
@@ -360,7 +360,7 @@ class PaymentViewState extends State<PaymentView> {
         url: '/acceptance/payments/pay',
         data: paymentData,
       );
-      print("payWithMobileWallet $response");
+      log("payWithMobileWallet $response");
       if (response.data.containsKey('redirect_url')) {
         redirectUrl = response.data['redirect_url'].toString();
       } else {
