@@ -26,7 +26,8 @@ class _MobileWalletScreenState extends State<MobileWalletScreen> {
     // No need for platform check as the package handles it internally
   }
 
-  String _normalizeUrl(String url) {
+String normalizeUrl(String url) {
+  if (url.isEmpty) return "";
   if (url.startsWith("http://") || url.startsWith("https://")) {
     return url;
   }
