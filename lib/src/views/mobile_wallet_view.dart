@@ -25,14 +25,6 @@ class _MobileWalletScreenState extends State<MobileWalletScreen> {
     super.initState();
     // No need for platform check as the package handles it internally
   }
-
-String normalizeUrl(String url) {
-  if (url.isEmpty) return "";
-  if (url.startsWith("http://") || url.startsWith("https://")) {
-    return url;
-  }
-  return "https://$url"; // fallback
-}
   
   @override
   Widget build(BuildContext context) {
@@ -63,7 +55,7 @@ String normalizeUrl(String url) {
                   );
                 },
               )
-               ..loadRequest(Uri.parse(_normalizeUrl(widget.paymentUrl)));
+               ..loadRequest(Uri.parse((widget.paymentUrl)));
       ),
     );
   }
