@@ -270,6 +270,7 @@ class PaymentViewState extends State<PaymentView> {
           "api_key": paymentData.apiKey,
         },
       );
+      print("getAuthToken $response");
       paymentFirstToken = response.data['token'];
     } catch (error) {
       widget.onPaymentError({
@@ -291,6 +292,7 @@ class PaymentViewState extends State<PaymentView> {
           "items": [],
         },
       );
+      print("getOrderRegisrationId $response");
       paymentOrderId = response.data['id'].toString();
       await getPaymentRequest();
     } catch (error) {
@@ -358,7 +360,7 @@ class PaymentViewState extends State<PaymentView> {
         url: '/acceptance/payments/pay',
         data: paymentData,
       );
-
+      print("payWithMobileWallet $response");
       if (response.data.containsKey('redirect_url')) {
         redirectUrl = response.data['redirect_url'].toString();
       } else {
