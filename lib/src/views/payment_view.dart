@@ -239,6 +239,8 @@ class PaymentViewState extends State<PaymentView> {
                 "status": "error",
                 "message": "Mobile Wallet payment failed",
                 "orderId": paymentOrderId,
+                "finalToken": finalToken,
+                "redirectUrl": redirectUrl,
               }),
               onSuccess: () => widget.onPaymentSuccess({
                 "status": "success",
@@ -332,6 +334,7 @@ class PaymentViewState extends State<PaymentView> {
         url: '/acceptance/payment_keys',
         data: requestData,
       );
+      print("getPaymentRequest $response");
       finalToken = response.data['token'];
     } catch (error) {
       widget.onPaymentError({
