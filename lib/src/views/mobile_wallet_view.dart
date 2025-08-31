@@ -26,6 +26,13 @@ class _MobileWalletScreenState extends State<MobileWalletScreen> {
     // No need for platform check as the package handles it internally
   }
 
+  String _normalizeUrl(String url) {
+  if (url.startsWith("http://") || url.startsWith("https://")) {
+    return url;
+  }
+  return "https://$url"; // fallback
+}
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -55,7 +62,7 @@ class _MobileWalletScreenState extends State<MobileWalletScreen> {
                   );
                 },
               )
-              ..loadRequest(Uri.parse(widget.redirectUrl))),
+               ..loadRequest(Uri.parse(_normalizeUrl(widget.paymentUrl)));
       ),
     );
   }
